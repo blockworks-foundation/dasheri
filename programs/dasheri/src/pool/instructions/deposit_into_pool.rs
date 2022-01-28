@@ -49,6 +49,9 @@ impl<'info> PoolDepositIntoPool<'info> {
     }
 }
 
+// REVIEW: What's this instruction good for? Why can I deposit into the vault?
+// Is it a two-phase thing, where I deposit into the vault and the deposit into
+// one of the connected mango accounts from there? Seems complicated for an example.
 pub fn handler(ctx: Context<PoolDepositIntoPool>, amount: u64) -> ProgramResult {
     token::transfer(ctx.accounts.transfer_ctx(), amount)?;
 

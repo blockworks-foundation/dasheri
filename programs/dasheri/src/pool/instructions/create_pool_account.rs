@@ -7,6 +7,7 @@ use crate::pool::state::{Pool, PoolAccount};
 pub struct PoolCreatePoolAccount<'info> {
     #[account(
         init,
+        // REVIEW: Using these seeds, there can be only one pool_account per pool!
         seeds = [b"pool_account".as_ref(), pool.key().as_ref()],
         bump = bump,
         payer = user
@@ -19,6 +20,7 @@ pub struct PoolCreatePoolAccount<'info> {
     )]
     pub pool: Box<Account<'info, Pool>>,
 
+    // REVIEW: possibly pool account owner and payer would be different
     #[account(mut)]
     pub user: Signer<'info>,
 

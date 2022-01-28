@@ -13,6 +13,14 @@ pub struct IouInitGateway<'info> {
     )]
     pub gateway: Box<Account<'info, Gateway>>,
 
+    // REVIEW: I think there's a nicer way to init a new mint:
+    //  #[account(init,
+    //    mint::decimals = 9,
+    //    mint::authority = admin,
+    //    mint::freeze_authority = admin,
+    //    seeds = ..., bump = ...,  payer = ...)]
+    //  pub mint: Box<Account<'info, Mint>>,
+    //
     /// The mint for iou which will represent user deposits
     #[account(
         init,

@@ -6,9 +6,15 @@ use solana_program::program::invoke_signed;
 #[derive(Accounts)]
 #[instruction(account_num: u64, bump: u8)]
 pub struct PoolCreateMangoAccount<'info> {
+    // REVIEW: So this can be done for any mango program/group permissionlessly?
+    // There's probably no way to validate that mango_program is a real mango program...
     pub mango_program: AccountInfo<'info>,
+
     #[account(mut)]
     pub mango_group: AccountInfo<'info>,
+
+    // REVIEW: I'd put seed constraints here, since it's a PDA
+    // maybe unnecessary since the mango program will duplicate the check
     #[account(mut)]
     pub mango_account: AccountInfo<'info>,
 
@@ -25,6 +31,8 @@ pub struct PoolCreateMangoAccount<'info> {
     pub system_program: Program<'info, System>,
 }
 
+// REVIEW: so there could be multiple mango_accounts per pool?
+// to simplify, maybe create the mango account along with the pool?
 pub fn handler(ctx: Context<PoolCreateMangoAccount>, account_num: u64, bump: u8) -> ProgramResult {
     let instruction = instruction::create_mango_account(
         ctx.accounts.mango_program.key,

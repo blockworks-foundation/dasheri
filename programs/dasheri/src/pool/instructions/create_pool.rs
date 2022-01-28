@@ -29,6 +29,7 @@ pub struct PoolCreatePool<'info> {
     // )]
     pub deposit_iou_mint: Box<Account<'info, Mint>>,
 
+    // REVIEW: in prod you'd likely have a different admin and pda-payer
     #[account(mut)]
     pub admin: Signer<'info>,
 
