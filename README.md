@@ -28,7 +28,7 @@ programs
         └── test_pool.rs # test for pool
 ```
 
-The point of this anchor project is to serve as a starter kit or example to compose with mango-v3 using anchor. 
+[This](https://en.wikipedia.org/wiki/Dasheri) anchor project should serve as a starter kit or example to compose with mango-v3 using anchor. 
 It currently provides 2 examples and various inline todos on how to extend this.
 
 Use cases
